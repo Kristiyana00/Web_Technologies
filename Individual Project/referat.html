@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSS: стилове, класове, селектори</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="javascript/themeSwitch.js"></script>
+</head>
+
+<body>
+    <nav class="nav-area" id="navigation">
+        <ul>
+            <li><a class="nav-link" href="#css">Начало</a></li>
+            <li><a class="nav-link" href="#styles">Употреба и стилове</a>
+                <ul class="dropdown">
+                    <li><a class="nav-link" href="#inline-style">Inline Style</a></li>
+                    <li><a class="nav-link" href="#internal-style">Internal Style</a></li>
+                    <li><a class="nav-link" href="#external-style">External Style</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-link" href="#syntax">Синтаксис на CSS</a></li>
+            <li><a class="nav-link" href="#selectors">Видове селектори</a>
+                <ul class="dropdown">
+                    <li><a class="nav-link" href="#simple-selectors">Прости селектори</a>
+                        <ul class="dropdown">
+                            <li><a class="nav-link" href="#universal-selector">Universal Selector</a></li>
+                            <li><a class="nav-link" href="#type-selector">Type Selector</a></li>
+                            <li><a class="nav-link" href="#class-selector">Class Selector</a></li>
+                            <li><a class="nav-link" href="#id-selector">ID Selector</a></li>
+                            <li><a class="nav-link" href="#attribute-selector">Attribute Selector</a></li>
+                            <li><a class="nav-link" href="#pseudo-class-selector">Pseudo-Class Selector</a></li>
+                            <li><a class="nav-link" href="#pseudo-element-selector">Pseudo-Element Selector</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link" href="#group-selector">Групиращ селектор</a></li>
+                    <li><a class="nav-link" href="#combinator-selectors">Комбиниращи селектори</a></li>
+                </ul>
+            </li>
+            <li><a class="nav-link" href="#conclusion">Заключение</a></li>
+            <li><a class="nav-link" href="#resources">Източници</a></li>
+            <button onclick="themeSwitch()">DARK MODE</button>
+        </ul>
+    </nav>
+    <section id="wrapper">
+        <header>
+            <h1 id="main-header">CSS: стилове, класове, селектори</h1>
+        </header>
+        <article id="css">
+            <header>
+                <h1>Какво е CSS</h1>
+            </header>
+            <section>
+                <p><b>CSS (Cascading Style Sheets)</b> е език за програмиране, който се използва за описване на
+                    представянето на уеб страници.
+                    Прилага се, както върху HTML документи, така и върху XML уебстраници и документи.
+                    HTML се използва за цялостното структуриране на един уеб документ, докато CSS отговаря за
+                    стилизирането на този HTML.
+                    Най-често използвани са: промяна на шрифт, цвят и размер на текста, фон на страницата,
+                    форматиране на елементите на HTML документа и др.</p>
+            </section>
+        </article>
+        <article id="styles">
+            <header>
+                <h1>Употреба и стилове</h1>
+            </header>
+            <p>Както при HTML, CSS се пише в текстов редактор. Съществуват три основни начина, чрез които се задава
+                стил на HTML докуемнта. Това са Inline CSS, Internal CSS и External CSS.
+                Най-главната разлика между Inline CSS и External CSS е това, че Inline стилът се изпълнява по-бързо,
+                защото браузърът тегли само един файл, докато при External стила, браузърът е длъжен да изтегли HTML
+                и CSS файловете отделно.
+                Сега ще разгледаме всеки от трите стила <a href="#link1">[1]</a>:
+            </p>
+            <section id="inline-style">
+                <h3>Inline CSS:</h3>
+                <p><b>Inline CSS</b> се използва, за да стилизира специфичен HTML елемент. Най-често се използва с
+                    тестова цел. Не се препоръчва използването на този метод.
+                    За този стил се използва <b>style</b> атрибут, който се добавя към съответния HTML таг.</p>
+                
+                <pre>
+                            <code class="code">
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;body style="background-color:black;"&gt;
+
+                                &lt;h1 style="color:white;padding:30px;&gt;"Hostinger Tutorials&lt;/h1&gt;
+                                &lt;p style="color:white;"&gt; Something usefull here. &lt;/p&gt;
+
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                            </code>
+                </pre>
+                <figcaption>Код 1. Пример за използването на Inline CSS <a href="#link1">[1]</a></figcaption>
+                <p>Предимства на Inline CSS:</p>
+                <ul>
+                    <li>Може лесно и бързо да се вмъква стилизация към някоя HTML страница. Затова този метод
+                        е удобен за тестване и визуализиране на направените промени.
+                    </li>
+                    <li>
+                        Не се изисква създаването на отделен документ, който да съдържа стилизацията.
+                    </li>
+                </ul>
+                <p>Недостатъци на Inline CSS:</p>
+                <ul>
+                    <li>
+                        Добавянето на стил поотделно към всеки един от елементите на HTML файла е загуба на време и
+                        прави структурата на документа нечетима.
+                    </li>
+                    <li>
+                        Стилизирането на множество елементи по този начин може да повлияе на размера на страницата и
+                        времето за изтегляне.
+                    </li>
+                </ul>
+            </section>
+            <section id="internal-style">
+                <h3>Internal CSS:</h3>
+                <p><b>Internal CSS</b> изисква да бъде добавен <code><b>&lt;style&gt;</b></code> таг в
+                    <code><b>&lt;head&gt;</b></code> секцията на HTML документа. Този стил е ефективен, когато се
+                    ползва за документи от една страница.
+                    За стилизиране на документи с множество страници, използването на този стил не е ефективно,
+                    защото трябва да се повтаря стилизацията на всяка страница.
+                </p>
+                <p>Пример за използването на Internal CSS:</p>
+                <ol>
+                    <li>Отворете вашата HTML страница и намерете <code><b>&lt;head&gt;</b></code> тага.</li>
+                    <li>Поставете следния код след <code><b>&lt;head&gt;</b></code> тага:</li>
+                    <p>
+                    <pre><code>&lt;style type="text/css"&gt;</style></code></pre>
+                    </p>
+                    <li>Добавете CSS правила на нов ред. Пример:</li>
+                    <pre><code>
+                            body {
+                                background-color: blue;
+                            }
+
+                            h1 {
+                                color: red;
+                                padding: 60px;
+                            }</code></pre>
+                    <li>Напишете затварящ таг:</li>
+                    <pre><code>&lt;/style&gt;</code></pre>
+                </ol>
+                <p>Накрая HTML документът ще изглежда по този начин:</p>
+                <pre><code>
+                            &lt;!DOCTYPE html&gt;
+                            &lt;html&gt;
+                                &lt;head&gt;
+                                    &lt;style&gt;
+                                        body {
+                                            background-color: blue;
+                                        }
+                                        h1 {
+                                            color: red;
+                                            padding: 60px;
+                                        } 
+                                    &lt;/style&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;h1&gt;Tutorial&lt;/h1&gt;
+                                    &lt;p&gt;This is our paragraph.&lt;/p&gt;
+                                &lt;/body&gt;
+                            &lt;/html&gt;
+                        </code></pre>
+                        <figcaption>Код 2. Пример за използването на Internal CSS <a href="#link1">[1]</a></figcaption>
+                <p>Предимства на Internal CSS:</p>
+                <ul>
+                    <li>Могат да се използват класове и ID селектори, за които ще си говорим после. Пример:</li>
+                    <pre>
+                                <code>
+                                    .class {
+                                        property1 : value1; 
+                                        property2 : value2; 
+                                        property3 : value3; 
+                                    }
+                                    
+                                    #id {
+                                        property1 : value1; 
+                                        property2 : value2; 
+                                        property3 : value3; 
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 3. Пример за използването на Inline CSS <a href="#link1">[1]</a></figcaption>
+                    <li>Понеже стилът се добавя в същия HTML файл, няма нужда да използваме по няколко файла за един
+                        уеб документ.</li>
+                </ul>
+                <p>Недостатъци на Internal CSS:</p>
+                <ul>
+                    <li>Добавянето на CSS кода към HTML документа може да увеличи размера на документа и неговото
+                        зареждане в браузъра.</li>
+                </ul>
+            </section>
+            <section id="external-style">
+                <h3>External CSS:</h3>
+                <p>Чрез <b>External CSS</b> можете да свържете вашата уеб страница към външен <b>.css</b> файл,
+                    който съдържа информация за стилизацията и
+                    може да бъде създаден чрез всеки текстов редактор на вашето устройство (Notepad, Notepad++,
+                    Visual Studio Code и т.н.).</p>
+                <p>Този метод е най-ефикасен, особено когато се използва за стилизиране на големи уебстраници. Чрез
+                    редактиране само на един <b>.css</b> файл,
+                    можете лесно да правите промени по целия уебсайт наведнъж.</p>
+                <p>Пример за използването на External CSS:</p>
+                <ol>
+                    <li>Създайте си нов <b>.css</b> файл и дефинирайте някакъв стил на елементите. Пример:</li>
+                    <pre>
+                                <code>
+                                    body {
+                                        background-color: orange;
+                                        font-family: Helvetica, Arial, Sans-Serif;
+                                    }
+
+                                    p {
+                                        background-color: white;
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 4. Пример за създаването на External CSS <a href="#link1">[1]</a></figcaption>
+                    <li>Добавете в <code><b>&lt;head&gt;</b></code> секцията на вашия HTML докуемнт референция към
+                        външния <b>.css</b> файл. Това става след тага <code><b>&lt;title&gt;</b></code>:</li>
+                    <pre>
+                                <code>
+                                    &lt;link rel="stylesheet" type="text/css" href="style.css" /&gt;
+                                </code>
+                            </pre>
+                            <figcaption>Код 5. Пример за използването на External CSS <a href="#link1">[1]</a></figcaption>
+                </ol>
+                <p>Предимства на External CSS:</p>
+                <ul>
+                    <li>Понеже CSS кодът се намира в отделен документ, HTML файловете са по-добре структурирани, с
+                        по-четим код и по-малки като размер.</li>
+                    <li>Файлът <b>.css</b> може да се използва многократно за различни страници и документи.</li>
+                </ul>
+                <p>Недостатъци на External CSS:</p>
+                <ul>
+                    <li>Страниците на HTML документа може да не се визуализират правилно, докато не се зареди целия
+                        външен CSS файл.</li>
+                    <li>Качването или референцията към няколко CSS файла може да увеличи времето за зареждане.</li>
+                </ul>
+            </section>
+        </article>
+        <article id="syntax">
+            <header>
+                <h1>Синтаксис на CSS</h1>
+            </header>
+            <p>Както вече разбрахме, основната цел на CSS е да придаде специфични свойства на елементите на даден
+                уеб документ - цвят, оформление на текста, позициониране на елементите в пространството и др. CSS
+                правилото се състои от три основни елемента - selector, property и value. Property и value се
+                съдържат в блока с декларацията на даден селектор. Блокът с декларацията съдържа поне една
+                декларация, разделена с ";" и оградена с "{}". Нека разгледаме за какво служи всеки един от
+                елементите <a href="#link2">[2]</a>:
+            <ul>
+                <li><b>Selector</b> - посочва върху кои HTML елементи да се изпълни стилизацията</li>
+                <li><b>Propety</b> - идентификатор, който показва какво свойство да бъде приложено</li>
+                <li><b>Value</b> - стойност на дадено property. Всяко property има набор от валидни стойности,
+                    дефинирани от формална граматика, както и семантично значение, реализирано от браузъра</li>
+            </ul>
+            <div class="container">
+                <pre>
+                        <code>
+                            p {
+                                color: blue;
+                                text-align: center;
+                            }
+                        </code>
+                    </pre>
+                    <figcaption>Код 6. Пример за синтаксиса на CSS <a href="#link2">[2]</a></figcaption>
+            </div>
+            Пояснение към примера:
+            <ul>
+                <li><b>p</b> е селектор в CSS и сочи към HTML елемента, който искаме да стилизираме</li>
+                <li><b>color</b> е property, което показва какво ще стилизираме, а <b>red</b> е неговата стойност
+                    (value)</li>
+                <li><b>text-align</b> е propety, което показва какво ще стилизираме, а <b>center</b> е неговата
+                    стойност (value)</li>
+            </ul>
+            </p>
+        </article>
+        <article id="selectors">
+            <header>
+                <h1>Видове селектори в CSS</h1>
+            </header>
+            <p>CSS селекторите дефинират елемента, към който ще се изпълни дадено CSS правило. Различаваме няколко
+                основни типа селектори, които ще разгледаме. <a href="#link3">[3]</a></p>
+            <section id="simple-selectors">
+                <h2>Прости селектори в CSS</h2>
+                <p>Простият селектор се състои от едно условие. Селекторът на тип (type selector),
+                    универсалният селектор (universal selector), селекторът на атрибути (attribute selector),
+                    селекторът на ID (ID selector), селекторът на класове (class selector) и псевдо-класовете са
+                    прости селектори.
+                    Сега ще разгледаме отделните типове прости селектори.
+                </p>
+                <div id="universal-selector">
+                    <h3>Universal selector:</h3>
+                    <p>Избира всички елементи. По избор може да бъде ограничено до конкретно пространство от имена
+                        или до всички пространства от имена.</p>
+                    <p><b>Синтаксис:</b> *</p>
+                    <p><b>Пример: </b>* ще избере всички елементи в документа.
+                    <pre>
+                                    <code>
+                                        * {
+                                            background-color: blue;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 8. Пример за използването на Universal Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                </div>
+                <div id="type-selector">
+                    <h3>Type selector:</h3>
+                    <p>Избира всички елементи от определен тип.</p>
+                    <p><b>Синтаксис: </b>elementname</p>
+                    <p><b>Пример: </b> p ще избере всеки &lt;p&gt; елемент.
+                    <pre>
+                                    <code>
+                                        p {
+                                            text-align: center;
+                                            color: red;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 9. Пример за използването на Type Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                </div>
+                <div id="class-selector">
+                    <h3>Class selector:</h3>
+                    <p>Избира всички елементи от даден клас. За да бъдат избрани елементи от определен клас, се
+                        използва символът ".", последван от името на класа.</p>
+                    <p><b>Синтаксис: </b>.classname</p>
+                    <p><b>Пример: </b>.center ще избере всички елементи от клас "center".
+                    <pre>
+                                    <code>
+                                        .center {
+                                            text-align: center;
+                                            color: blue;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 10. Пример за използването на Class Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <p>Можем да задаваме и точно определен HTML елемент, който да бъде обхванат от CSS правилото.
+                        Това е възможно чрез изписване на името на елемента, след което "." и името на конкретния
+                        клас
+                    </p>
+                    <p><b>Пример: </b>
+                    <pre>
+                                    <code>
+                                        p.center {
+                                            background-color: yellow;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 11. Пример за използването на Class Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <p>По този начин за всички елементи от тип <b>&lt;p&gt;</b> и притежаващи клас "center", ще
+                        оцветим фона в жълто. </p>
+                </div>
+                <div id="id-selector">
+                    <h3>ID selector:</h3>
+                    <p>Избира елемент спрямо стойността на неговия id атрибут. В документа трябва да има само един
+                        елемент с конкретното id.</p>
+                    <p><b>Синтаксис: </b>#idname</p>
+                    <p><b>Пример: </b>#example ще избере само този елемент, който притежава id "example".
+                    <pre>
+                                    <code>
+                                        #example {
+                                            text-align: center;
+                                            color: blue;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 12. Пример за използването на ID Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                </div>
+                <div id="attribute-selector">
+                    <h3>Attribute selector:</h3>
+                    <p>Избира всички елементи, които притежават конкретен атрибут или стойност на атрибут. <a
+                            href="#link4">[4]</a></p>
+                    <h4>[attr] selector:</h4>
+                    <p>[attr] селекторът избира елементи по атрибут.</p>
+                    <p><b>Синтаксис: </b>[attr]</p>
+                    <p><b>Пример: </b> Избира всички &lt;a&gt; елементи с атрибут "title".
+                    <pre>
+                                    <code>
+                                        a[title] {
+                                            color: blue;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 13. Пример за използването на Attribute Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <h4>[attr="value"] selector:</h4>
+                    <p>[attr="value"] селекторът избира елементи по конкретни атрибут и стойност.</p>
+                    <p><b>Синтаксис: </b>[attr="value"]</p>
+                    <p><b>Пример: </b> Избира всички &lt;a&gt; елементи с атрибут "href", който има стойност
+                        "https://example.org".
+                    <pre>
+                                    <code>
+                                        a[href="https://example.org"] {
+                                            color: purple;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 14. Пример за използването на Attribute Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <h4>[attr~="value"] selector:</h4>
+                    <p>[attr~="value"] селекторът избира елементи по атрибут, чиято стойност съдържа в себе си
+                        "value".</p>
+                    <p><b>Синтаксис: </b>[attr~="value"]</p>
+                    <p><b>Пример: </b> Избира всички елементи с атрибут "title", чиято стойност съдържа в себе си
+                        лист от думи, с разстояние space, и една от тези думи е "flower".
+                    <pre>
+                                    <code>
+                                        [title~="flower"] {
+                                            border: 5px solid blue;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 15. Пример за използването на Attribute Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <p><b>Забележка:</b> Примерът ще вземе всички елементи, на които title="flower", title="summer
+                        flower" и title="flower new", но няма да
+                        вземе елементи с title="my-flower" или title="flowers".</p>
+                    <h4>[attr|="value"]</h4>
+                    <p>[attr|="value"] селекторът избира елементи с определен атрибут, чиято стойност е точно
+                        дадената стойност "value" или дадената стойност "value", последвана от тире (-).</p>
+                    <p><b>Синтаксис: </b>[att|="value"]</p>
+                    <p><b>Пример: </b>
+                    <pre>
+                                    <code>
+                                        [class|="top"] {
+                                            background: blue;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 16. Пример за използването на Attribute Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <p><b>Забележка: </b>Сойността трябва да бъде цяла дума, например class="top", или следвана от
+                        тире, например class="top-text".</p>
+                    <h4>[attr^="value"] selector:</h4>
+                    <p>[attr^="value"] селекторът избира елементи с определен атрибут, чиято стойност започва с
+                        определено "value".</p>
+                    <p><b>Синтаксис: </b>[attr^="value"]</p>
+                    <p><b>Пример: </b> Избира всички елементи с атрибут "class", чиято стойност започва с "top".
+                    <pre>
+                                    <code>
+                                        [class^="top"] {
+                                            background: blue;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 17. Пример за използването на Attribute Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <p><b>Забележка: </b>Стойността не е задължително да бъде цяла дума.</p>
+                    <h4>[attr$="value"] selector:</h4>
+                    <p>[attr$="value"] селекторът избира елементи с определен атрибут, чиято стойност завършва с
+                        определено "value".</p>
+                    <p><b>Синтаксис: </b>[attr$="value"]</p>
+                    <p><b>Пример: </b> Избира всички &lt;a&gt; елементи с атрибут "href", чиято стойност завършва с
+                        ".org".
+                    <pre>
+                                    <code>
+                                        a[href$=".org"] {
+                                            font-style: italic;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 18. Пример за използването на Attribute Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <p><b>Забележка: </b>Стойността не е задължително да бъде цяла дума.</p>
+                    <h4>[attr*="value"] selector:</h4>
+                    <p>[attr*="value"] селекторът избира елементи с определен атрибут, чиято стойност съдържа някъде
+                        в себе си определено "value".</p>
+                    <p><b>Синтаксис: </b>[attr*="value"]</p>
+                    <p><b>Пример: </b> Избира всички &lt;a&gt; елементи с атрибут "href", чиято стойност съдържа
+                        някъде в себе си "example".
+                    <pre>
+                                    <code>
+                                        a[href*="example"] {
+                                            font-size: 2em;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 19. Пример за използването на Attribute Selector <a href="#link3">[3]</a></figcaption>
+                    </p>
+                    <p><b>Забележка: </b>Стойността не е задължително да бъде цяла дума.</p>
+                </div>
+                <div id="pseudo-class-selector">
+                    <h3>Pseudo-Classes:</h3>
+                    <p>
+                        Псевдо-класовете ни позволяват да приложим стил към елемент не само по отношение на
+                        съдържанието на дървото на документа, но и във връзка с външни фактори, някои от които са:
+                        история на навигатора (например :visited),
+                        състоянието на съдържанието на даден елемент (например :checked), позицията на мишката
+                        (например :hover) и много други. Те са прости селектори, които позволяват избор въз основа
+                        на информация, която се намира извън дървото
+                        на документа, или която може да бъде невъзможна за изразяване с помощта на другите прости
+                        селектори, които вече разгледахме.
+                    </p>
+                    <p>
+                        Псевдо класовете могат да бъдат два вида - динамични и
+                        структурни.
+                        Псевдо класовете могат да бъдат динамични в смисъл, че даден елемент може да придобие или да
+                        загуби псевдо клас, докато потребителят взаимодейства с документа, без самият документ да се
+                        променя.
+                        Могат да бъдат структурни в смисъл, че те избират даден елемент спрямо неговата позиция в
+                        дървото и връзката му с другите елементи. Псевдо класът не се появява и не променя източника
+                        или дървото на документа. <a href="#link5">[5]</a>
+                        Сега ще разгледаме примери за някои от класовете. <a href="#link6">[6]</a>
+                    </p>
+                    <p><b>Синтаксис:</b>
+                    <pre>
+                                    <code>
+                                        selector:pseudo-class {
+                                            property: value;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 20. Синтаксис на Pseudo-Class Selector <a href="#link5">[5]</a></figcaption>
+                    </p>
+                    <h4>Linguistic pseudo-classes:</h4>
+                    <p>Тези псевдо-класове отразяват езика на документа и позволяват избор на елементи въз основа на
+                        посоката на езика или скрипта.</p>
+                    <ul>
+                        <li><b>:dir</b></li>
+                        <li><b>:lang</b> - избира елемент въз основа на езика на съдържанието му</li>
+                    </ul>
+                    <h4>Location pseudo-classes:</h4>
+                    <p>Тези псевдо-класове се отнасят до връзки (линкове).</p>
+                    <ul>
+                        <li><b>:any-link</b> - избира елемент, който отговаря на <b>:link</b> или на <b>:visited</b>
+                        </li>
+                        <li><b>:link</b> - избира всички линкове, които все още не са посетени от потребителя</li>
+                        <li><b>:visited</b> - избира всички линкове, които вече са посетени от потребителя</li>
+                        <li><b>:local-link</b> - избира всички линкове, които сочат към същата страница</li>
+                        <li><b>:target</b> - избира елемента, към който води даден линк</li>
+                        <li><b>:target-within</b> - избира всеки елемент, към който сочи даден линк, и всички
+                            елементи, които имат наследник, към който сочи този линк</li>
+                        <li><b>:scope</b></li>
+                    </ul>
+                    <h4>User action pseudo-classes:</h4>
+                    <p>Тези псевдо-класове изискват известно взаимодействие от страна на потребителя, за да бъдат
+                        приложени.</p>
+                    <ul>
+                        <li><b>:hover</b> - избира елемента, който потребителят е посочил с мишката</li>
+                        <li><b>:active</b> - избира елемента, който е бил активиран от потребителя, например чрез
+                            кликване върху него</li>
+                        <li><b>:focus</b> - избира елемента, който е на фокус</li>
+                        <li><b>:focus-visible</b></li>
+                        <li><b>:focus-within</b> - избира елемент, към който е приложен <b>:focus</b>, както и всеки
+                            елемент, който има наследник, към който е приложен <b>:focus</b></li>
+                    </ul>
+                    <h4>Time-dimensional pseudo-classes:</h4>
+                    <p>This pseudo-class will select the time-dimensional relative element like during a speech
+                        rendering or during the display of HTML5 video subtitles. </p>
+                    <ul>
+                        <li><b>:current</b> - представя елемента или предшественика на елемента, който се показва
+                        </li>
+                        <li><b>:past</b> - представя елемента, който се появява изцяло преди <b>:current</b>
+                            елемента</li>
+                        <li><b>:future</b> - представя елемента, който се появява изцяло след <b>:current</b>
+                            елемента</li>
+                    </ul>
+                    <h4>Resource state pseudo-classes:</h4>
+                    <p>Тези псевдо-класове се прилагат за медии, които могат да бъдат в състояние, в което биха били
+                        описани като възпроизвеждащи, като например видео.</p>
+                    <ul>
+                        <li><b>:playing</b> - избира медиен елемент, който може да се изпълни, когато този елемент
+                            се възпроизвежда</li>
+                        <li><b>:paused</b> - избира медиен елемент, който може да се изпълни, когато този елемент е
+                            поставен на пауза</li>
+                    </ul>
+                    <h4>Input pseudo-classes:</h4>
+                    <p>Тези псевдо-класове се отнасят до form елементите и позволяват избора на елементи въз основа
+                        на HTML атрибути и състоянието, в което се намира полето
+                        преди и след взаимодействието с него.
+                    </p>
+                    <ul>
+                        <li><b>:autofill</b> - избира елемента, чийто &lt;input&gt; е бил попълнен автоматично от
+                            браузъра</li>
+                        <li><b>:enabled</b> - избира елемент, който е в активирано състояние</li>
+                        <li><b>:disabled</b> - избира елемент, който е в деактивирано състояние</li>
+                        <li><b>:read-only</b> - избира елемент, който не може да бъде променян от потребителя</li>
+                        <li><b>:read-write</b> - избира елемент, който може да бъде променян от потребителя</li>
+                        <li><b>:placeholder-shown</b> - избира елемент, който има атрибут <b>placeholder</b>, който
+                            показва даден текст</li>
+                        <li><b>:default</b></li>
+                        <li><b>:checked</b> - избира всеки <b>&lt;input&gt;</b> елемент, който е избран от
+                            потребителя</li>
+                        <li><b>:blank</b> - избира всеки <b>&lt;input&gt;</b> елемент, който е празен, съдържа
+                            празен стринг или друг нулев вход</li>
+                        <li><b>:valid</b> - избира всеки <b>&lt;input&gt;</b> елемент, който съдържа валидни входни
+                            данни</li>
+                        <li><b>:invalid</b> - избира всеки <b>&lt;input&gt;</b> елемент, който съдържа невалидни
+                            входни данни</li>
+                        <li><b>:in-range</b> - използва се върху елементи, които имат зададена граница на
+                            стойностите, например при плъзгач, когато избраната стойност е в зададения интервал</li>
+                        <li><b>:out-of-range</b> - използва се върху елементи, които имат зададена граница на
+                            стойностите, например при плъзгач, когато избраната стойност не е в зададения интервал
+                        </li>
+                        <li><b>:required</b> - избира &lt;input&gt; елементи, които са задължителни</li>
+                        <li><b>:optional</b> - избира &lt;input&gt; елементи, които са опционални</li>
+                        <li><b>:user-invalid</b> - избира елемент с некоректни входни данни, но само когато
+                            потребителят е взаимодействал с него</li>
+                    </ul>
+                    <h4>Tree-structural pseudo-classes:</h4>
+                    <p>Тези псевдо-класове се отнасят до местоположението на елемент в дървото на документа.</p>
+                    <ul>
+                        <li><b>:root</b> - избира root елемента на документа. В HTML това обикновено е &lt;html&gt;
+                            елемента</li>
+                        <li><b>:empty</b> - избира елемент, който няма деца</li>
+                        <li><b>:nth-child</b> - избира n-тото дете на даден елемент</li>
+                        <li><b>:nth-last-child</b> - избира n-toto дете на даден елемент в обратен ред</li>
+                        <li><b>:first-child</b> - избира първото дете на даден елемент</li>
+                        <li><b>:last-child</b> - избира последното дете на даден елемент</li>
+                        <li><b>:only-child</b> - избира елементи, които имат единствено дете, например лист с един
+                            единствен list item</li>
+                        <li><b>:nth-of-type</b> - избира n-тия елемент от даден тип в конкретен селектор</li>
+                        <li><b>:nth-last-of-type</b> - избира n-тия елемент от даден тип в конкретен селектор в
+                            обратен ред</li>
+                        <li><b>:first-of-type</b> - избира първия срещан елемент от даден тип в конкретен селектор
+                        </li>
+                        <li><b>:last-of-type</b> - избира последния срещан елемент от даден тип в конкретен селектор
+                        </li>
+                        <li><b>:only-of-type</b> - избира елемент, който е единствен от даден тип в конкретен
+                            селектор</li>
+                    </ul>
+                </div>
+                <div id="pseudo-element-selector">
+                    <h3>Pseudo-Elements:</h3>
+                    <p>Псевдо-елементите в CSS са ключови думи, които се добавят към селектор. Това ни позволява да
+                        стилизираме конкретна част от избрания елемент. Сега ще разгледаме някои псевдо елементи. <a
+                            href="#link7">[7]</a>
+                    </p>
+                    <p><b>Синтаксис:</b>
+                    <pre>
+                                    <code>
+                                        selector::pseudo-element {
+                                            property: value;
+                                        }
+                                    </code>
+                                </pre>
+                                <figcaption>Код 21. Синтаксис на Pseudo-Element Selector <a href="#link7">[7]</a></figcaption>
+                    </p>
+                    <ul>
+                        <li><b>::first-line</b> - добавя стил към първия ред на даден елемент, може да се използва
+                            само върху block-level елементи</li>
+                        <li><b>::first-letter</b> - добавя стил към първата буква на даден текст, може да се
+                            използва само върху block-level елементи</li>
+                        <li><b>::before</b> - използва се, за да се добави някакво съдържание преди даден елемент
+                        </li>
+                        <li><b>::after</b> - използва се, за да се добави някакво съдържание след даден елемент</li>
+                        <li><b>::marker</b> - позволява добавянето на стил към маркера на list item-ите в даден лист
+                        </li>
+                        <li><b>::selection</b> - позволява добавянето на стил към полето, което потребителят е
+                            маркирал с мишката</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="group-selector">
+                <h2>Групиращ селектор</h2>
+                <p>Групиращият селектор (Grouping selector) избира всички HTML елементи, които споделят обща
+                    стилизация на елементите.</p>
+                <p><b>Пример: </b>Нека погледнем следния код. Елементите <b>h1</b>, <b>h2</b> и <b>p</b> имат една и
+                    съща стилизация:
+                <pre>
+                                <code>
+                                    h1 {
+                                        text-align: center;
+                                        color: red;
+                                    }
+                                      
+                                    h2 {
+                                        text-align: center;
+                                        color: red;
+                                    }
+                                      
+                                    p {
+                                        text-align: center;
+                                        color: red;
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 22.  <a href="#link3">[3]</a></figcaption>
+                </p>
+                <p>Можем да използваме групиращия селектор за минимизиране на кода. За да групираме отделните
+                    селектори, разделяме всеки селектор със запетая (,).</p>
+                <p><b>Пример: </b>
+                <pre>
+                                <code>
+                                    h1, h2, p {
+                                        text-align: center;
+                                        color: red;
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 23. Използване на групиращ селектор <a href="#link3">[3]</a></figcaption>
+                </p>
+            </section>
+            <section id="combinator-selectors">
+                <h2>Комбиниращи селектори</h2>
+                <p>Комбинаторът е нещо, което обяснява връзката между селекторите. CSS селекторът може да съдържа
+                    няколко прости селектора, между които поставяме комбинатор.
+                    Съществуват 4 типа комбинатори <a href="#link8">[8]</a>:
+                <ul>
+                    <li>descendant selector (space)</li>
+                    <li>child selector (&gt;)</li>
+                    <li>adjacent sibling selector (+)</li>
+                    <li>general sibling selector (~)</li>
+                </ul>
+                Сега ще разгледаме всеки един от комбинаторите.
+                </p>
+                <h4>Descendant selector: </h4>
+                <p>Комбинаторът " " (space) избира всички елементи, които са наследници на първия елемент.</p>
+                <p><b>Синтаксис: </b>A B</p>
+                <p><b>Пример: div p</b> ще избере всички <b>&lt;p&gt;</b> елементи, които се намират в
+                    <b>&lt;div&gt;</b> елемент.
+                <pre>
+                                <code>
+                                    div p {
+                                        background-color: blue;
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 24. Използване на комбиниращ селектор <a href="#link8">[8]</a></figcaption>
+                </p>
+                <p><b>Забележка: </b>Този комбинатор избира всички елементи с определен родител. Елементите, които
+                    не са наследници на този родител, няма да бъдат избрани.</p>
+                <h4>Child selector:</h4>
+                <p>Комбинаторът "&gt;" избира всички елементи, които са преки деца на първия елемент.</p>
+                <p><b>Синтаксис: </b>A &gt; B</p>
+                <p><b>Пример: div &gt; p</b> ще избере всички <b>&lt;p&gt;</b> елементи, които са преки деца на
+                    <b>&lt;div&gt;</b> елемента.
+                <pre>
+                                <code>
+                                    div &gt; p {
+                                        background-color: blue;
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 25. Използване на комбиниращ селектор <a href="#link8">[8]</a></figcaption>
+                </p>
+                <p><b>Забележка: </b>Този комбинатор избира всички елементи с определен родител. Елементите, които
+                    не са преки деца на този родител, няма да бъдат избрани.</p>
+                <h4>Adjacent sibling selector:</h4>
+                <p>Комбинаторът "+" избира втория елемент, ако той е разположен директно след първия специфициран
+                    елемент.</p>
+                <p><b>Синтаксис: </b>A + B</p>
+                <p><b>Пример: div + p</b> ще избере първия <b>&lt;p&gt;</b> елемент, който е разположен директно
+                    след <b>&lt;div&gt;</b> елемент.
+                <pre>
+                                <code>
+                                    div + p {
+                                        background-color: blue;
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 26. Използване на комбиниращ селектор <a href="#link8">[8]</a></figcaption>
+                </p>
+                <h4>General sibling selector: </h4>
+                <p>Комбинаторът "~" избира всички елементи, които са siblings. Това означава, че вторият елемент се
+                    намира след първия елемент (не е нужно да е непосредствено след него) и двата елемента споделят
+                    общ родител.</p>
+                <p><b>Синтаксис: </b>A ~ B</p>
+                <p><b>Пример: div ~ p</b> ще избере всички <b>&lt;p&gt;</b> елементи, които се намират след
+                    <b>&lt;div&gt;</b> елемент.
+                <pre>
+                                <code>
+                                    div ~ p {
+                                        background-color: blue;
+                                    }
+                                </code>
+                            </pre>
+                            <figcaption>Код 27. Използване на комбиниращ селектор <a href="#link8">[8]</a></figcaption>
+                </p>
+            </section>
+        </article>
+        <article id="conclusion">
+            <header>
+                <h1>Заключение</h1>
+            </header>
+            <p>Този реферат има за цел да даде цялостна информация за това какво е CSS, за какво се използва, какъв
+                е синтаксиса му, какви стилове съществуват,
+                както и да представи в дълбочина видовете селектори и с какво те се различават.
+            </p>
+        </article>
+        <article id="resources">
+            <header>
+                <h1>Източници</h1>
+            </header>
+            <p id="link1">[1] Types of CSS: Inline, External and Internal Definitions and Differences Explained,
+                линк: <a href="https://www.hostinger.com/tutorials/difference-between-inline-external-and-internal-css"
+                    target="_blank">https://www.hostinger.com/tutorials/difference-between-inline-external-and-internal-css</a>,
+                последно посетен на: 27.03.2022г.</p>
+            <p id="link2">[2] CSS Syntax, линк: <a href="https://www.w3schools.com/css/css_syntax.asp"
+                    target="_blank">https://www.w3schools.com/css/css_syntax.asp</a>, последно посетен на:
+                02.04.2022г.</p>
+            <p id="link3">[3] CSS selectors, линк: <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors"
+                    target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors</a>, последно
+                посетен на: 02.04.2022г.</p>
+            <p id="link4">[4] Attribute selectors, линк: <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors"
+                    target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors</a>,
+                последно посетен на: 02.04.2022г.</p>
+            <p id="link5">[5] CSS Pseudo-classes, линк: <a href="https://www.w3schools.com/css/css_pseudo_classes.asp"
+                    target="_blank">https://www.w3schools.com/css/css_pseudo_classes.asp</a>, последно посетен на:
+                03.04.2022г.</p>
+            <p id="link6">[6] Pseudo-classes: Types and Examples, линк: <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes"
+                    target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes</a>, последно
+                посетен на: 03.04.2022г.</p>
+            <p id="link7">[7] CSS Pseudo-elements, линк: <a href="https://www.w3schools.com/css/css_pseudo_elements.asp"
+                    target="_blank">https://www.w3schools.com/css/css_pseudo_elements.asp</a>, последно посетен на:
+                03.04.2022г.</p>
+            <p id="link8">[8] CSS Combinators, линк: <a href="https://www.w3schools.com/css/css_combinators.asp"
+                    target="_blank">https://www.w3schools.com/css/css_combinators.asp</a>, последно посетен на:
+                03.04.2022г.</p>
+        </article>
+    </section>
+</body>
+
+</html>

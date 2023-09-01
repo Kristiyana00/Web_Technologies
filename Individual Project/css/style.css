@@ -1,0 +1,173 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFA500;
+    scroll-behavior: smooth;
+}
+
+a.nav-link {
+    font-size: 0.9vw;
+    text-transform: uppercase;
+}
+
+.nav-area {
+    background: #262626;
+    position: fixed;
+    width: 100%;
+}
+
+.dark-mode {
+    background-color: #4a4a4a;
+}
+
+.dark-mode-header {
+    font-size: 20px;
+    color: #00bfff;
+    font-weight: bolder;
+}
+
+figcaption {
+    text-align: center;
+    color: #262626;
+    font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: smaller;
+}
+
+button {
+    float: right;
+    background-color: #262626;
+    border: #262626;
+    color: #f5f5f5;
+    font-size: 0.9vw;
+    display: block;
+    height: 100%;
+    padding: 15px 20px;
+}
+
+button:hover {
+    background-color: #3d3d3d
+}
+
+.nav-area ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-area > ul > li {
+    float: left;
+    position: relative;
+}
+
+.nav-area ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px 20px;
+    display: block;
+}
+
+.nav-area ul li:hover a {
+    background-color: #3d3d3d;
+}
+
+.nav-area ul ul {
+    position: absolute;
+    padding: 0;
+    min-width: 160px;
+    width: 100%;
+    display: none;
+    top: 100%;
+    left: 0;
+}
+
+.nav-area ul li:hover > ul {
+    display: block;
+}
+
+.nav-area ul ul li:hover a {
+    background: #262626;
+}
+
+.nav-area ul ul li {
+    position: relative;
+}
+
+.nav-area ul ul ul {
+    top: 0;
+    left: 100%;
+}
+
+.nav-area ul ul ul li:hover a {
+    background: #3d3d3d;
+}
+
+#main-header {
+    text-align: center;
+    font-size: 50px;
+}
+
+body {
+    margin: 0px;
+    padding: 0;
+}
+
+pre {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: auto;
+	overflow-y: hidden;
+	font-size: 12px;
+	line-height: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+pre code {
+	padding: 10px;
+	color: #333;
+}
+
+h1 {
+    color: #262626;
+    font-size: 36px;
+    padding: auto;
+    padding-top: 45px;
+}
+
+h2 {
+    font-size: 28px;
+    padding-top: 45px;
+}
+
+h3 {
+    font-size: 24px;
+    padding-top: 45px;
+}
+
+#my-name {
+    color: black;
+}
+
+h4 {
+    font-size: 20px;
+    color:#FFA500;
+    font-weight: bolder;
+}
+
+#wrapper {
+    margin-top: 0px;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 20px;
+    background-color: white;
+}
+
+#nav-wrapper {
+    display: block;
+}
+
+
+
+
